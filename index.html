@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<canvas id="myChart"></canvas>
+
+<script>
+
+const labels = ['2019','2024','2025','2026','2027','2028','2029','2030'];
+
+const data = {
+  labels: labels,
+  datasets: [
+
+    {
+      label: 'Scope 1',
+      data: [389101,277717,281327,284985,288689,292442,296244,300095],
+      backgroundColor: '#1b4332',
+      stack: 'Scope1+2'
+    },
+
+    {
+      label: 'Scope 2',
+      data: [402715,286349,290072,293842,297662,301532,305452,309423],
+      backgroundColor: '#2d6a4f',
+      stack: 'Scope1+2'
+    },
+
+    {
+      label: 'Purchased goods & services',
+      data: [6816941,5339902,5409321,5479642,5550877,5623039,5696138,5770188],
+      backgroundColor: '#9d4edd',
+      stack: 'Scope3'
+    },
+
+    {
+      label: 'Upstream distribution',
+      data: [178180,420088,425549,431081,436685,442362,448113,453938],
+      backgroundColor: '#c77dff',
+      stack: 'Scope3'
+    },
+
+    {
+      label: 'Processing of sold products',
+      data: [279806,188198,190645,193123,195634,198177,200753,203363],
+      backgroundColor: '#e0aaff',
+      stack: 'Scope3'
+    },
+
+    {
+      label: 'End-of-life treatment',
+      data: [512125,224771,227693,230653,233652,236689,239766,242883],
+      backgroundColor: '#f3d5ff',
+      stack: 'Scope3'
+    },
+
+    {
+      label: 'Other Scope 3',
+      data: [1135641,780324,790032,801026,812394,823430,835391,847041],
+      backgroundColor: '#7b2cbf',
+      stack: 'Scope3'
+    }
+
+  ]
+};
+
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Umicore GHG Emissions by Scope (tCO2e)'
+      }
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: true,
+          text: 'tCO2e'
+        }
+      }
+    }
+  }
+};
+
+new Chart(
+  document.getElementById('myChart'),
+  config
+);
+
+</script>
+
+</body>
+</html>
