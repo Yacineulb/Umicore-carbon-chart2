@@ -1,54 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scope 3 Emissions</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
 <h2>Scope 3 Emissions Intensity (Purchased Goods & Services)</h2>
 
-<canvas id="scope3Chart"></canvas>
+<canvas id="scope3Chart" width="800" height="400"></canvas>
 
 <script>
 
-const scope3Data = {
-  labels: ['2019','2024','2025','2026','2027','2028','2029','2030'],
+const labels = ['2019','2024','2025','2026','2027','2028','2029','2030'];
+
+const data = {
+  labels: labels,
   datasets: [
     {
       label: 'BAU Intensity',
       data: [2028,1543,1543,1543,1543,1543,1543,1543],
-      borderColor: '#E74C3C',
-      backgroundColor: '#E74C3C',
+      borderColor: 'red',
+      backgroundColor: 'red',
+      fill: false,
       tension: 0.3
     },
     {
       label: 'SBTi Target Intensity',
       data: [2028,1543,1480,1418,1358,1299,1237,1176],
-      borderColor: '#2ECC71',
-      backgroundColor: '#2ECC71',
+      borderColor: 'green',
+      backgroundColor: 'green',
+      fill: false,
       tension: 0.3
     }
   ]
 };
 
-const scope3Config = {
+const config = {
   type: 'line',
-  data: scope3Data,
+  data: data,
   options: {
+    responsive: true,
     plugins: {
       title: {
         display: true,
-        text: 'Scope 3 GHG Intensity Reduction Required (Purchased Goods & Services)'
+        text: 'Scope 3 GHG Intensity Reduction Required'
       }
     },
-    responsive: true,
     scales: {
       y: {
         title: {
           display: true,
-          text: 'tCO₂e / million EUR revenue'
+          text: 'tCO2e / million EUR revenue'
         }
       }
     }
   }
 };
 
-new Chart(
-  document.getElementById('scope3Chart'),
-  scope3Config
-);
+const ctx = document.getElementById('scope3Chart').getContext('2d');
+new Chart(ctx, config);
 
 </script>
+
+</body>
+</html>
