@@ -2,6 +2,7 @@
 <html>
 <head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
 </head>
 
 <body>
@@ -18,9 +19,9 @@ const data = {
     label: 'Emissions (t CO₂)',
     data: [791816, 609518, 395908],
     backgroundColor: [
-      '#9E9E9E',  // grey baseline
-      '#E74C3C',  // red BAU
-      '#2ECC71'   // green target
+      '#9E9E9E',
+      '#E74C3C',
+      '#2ECC71'
     ]
   }]
 };
@@ -30,15 +31,37 @@ const config = {
   data: data,
   options: {
     plugins: {
+      legend: {
+        display: false
+      },
       title: {
         display: true,
         text: 'Scope 1+2 Emissions: BAU vs SBTi Target'
       },
-      legend: {
-        display: false
+      annotation: {
+        annotations: {
+          reductionArrow: {
+            type: 'line',
+            xMin: 1,
+            xMax: 1,
+            yMin: 395908,
+            yMax: 609518,
+            borderColor: 'black',
+            borderWidth: 2,
+            arrowHeads: {
+              end: {
+                display: true
+              }
+            },
+            label: {
+              display: true,
+              content: '−213 kt CO₂ reduction',
+              position: 'center'
+            }
+          }
+        }
       }
     },
-    responsive: true,
     scales: {
       y: {
         title: {
