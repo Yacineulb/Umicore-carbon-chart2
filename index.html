@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Scope 3 Emissions</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -9,9 +10,11 @@
 
 <h2>Scope 3 Emissions Intensity (Purchased Goods & Services)</h2>
 
-<canvas id="scope3Chart" width="800" height="400"></canvas>
+<canvas id="scope3Chart"></canvas>
 
 <script>
+
+window.onload = function () {
 
 const labels = ['2019','2024','2025','2026','2027','2028','2029','2030'];
 
@@ -23,7 +26,6 @@ const data = {
       data: [2028,1543,1543,1543,1543,1543,1543,1543],
       borderColor: 'red',
       backgroundColor: 'red',
-      fill: false,
       tension: 0.3
     },
     {
@@ -31,7 +33,6 @@ const data = {
       data: [2028,1543,1480,1418,1358,1299,1237,1176],
       borderColor: 'green',
       backgroundColor: 'green',
-      fill: false,
       tension: 0.3
     }
   ]
@@ -59,8 +60,10 @@ const config = {
   }
 };
 
-const ctx = document.getElementById('scope3Chart').getContext('2d');
+const ctx = document.getElementById('scope3Chart');
 new Chart(ctx, config);
+
+}
 
 </script>
 
