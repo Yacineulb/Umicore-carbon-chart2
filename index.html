@@ -1,72 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
-</head>
+<h2>Scope 3 Emissions Intensity (Purchased Goods & Services)</h2>
 
-<body>
-
-<h2>Scope 1+2 Emissions vs SBTi Target</h2>
-
-<canvas id="scope12Chart"></canvas>
+<canvas id="scope3Chart"></canvas>
 
 <script>
 
-const data = {
-  labels: ['2019 Baseline', '2030 BAU', '2030 SBTi Target'],
-  datasets: [{
-    label: 'Emissions (t CO₂)',
-    data: [791816, 609518, 395908],
-    backgroundColor: [
-      '#9E9E9E',
-      '#E74C3C',
-      '#2ECC71'
-    ]
-  }]
+const scope3Data = {
+  labels: ['2019','2024','2025','2026','2027','2028','2029','2030'],
+  datasets: [
+    {
+      label: 'BAU Intensity',
+      data: [2028,1543,1543,1543,1543,1543,1543,1543],
+      borderColor: '#E74C3C',
+      backgroundColor: '#E74C3C',
+      tension: 0.3
+    },
+    {
+      label: 'SBTi Target Intensity',
+      data: [2028,1543,1480,1418,1358,1299,1237,1176],
+      borderColor: '#2ECC71',
+      backgroundColor: '#2ECC71',
+      tension: 0.3
+    }
+  ]
 };
 
-const config = {
-  type: 'bar',
-  data: data,
+const scope3Config = {
+  type: 'line',
+  data: scope3Data,
   options: {
     plugins: {
-      legend: {
-        display: false
-      },
       title: {
         display: true,
-        text: 'Scope 1+2 Emissions: BAU vs SBTi Target'
-      },
-      annotation: {
-        annotations: {
-          reductionArrow: {
-            type: 'line',
-            xMin: 1,
-            xMax: 1,
-            yMin: 395908,
-            yMax: 609518,
-            borderColor: 'black',
-            borderWidth: 2,
-            arrowHeads: {
-              end: {
-                display: true
-              }
-            },
-            label: {
-              display: true,
-              content: '−213 kt CO₂ reduction',
-              position: 'center'
-            }
-          }
-        }
+        text: 'Scope 3 GHG Intensity Reduction Required (Purchased Goods & Services)'
       }
     },
+    responsive: true,
     scales: {
       y: {
         title: {
           display: true,
-          text: 't CO₂'
+          text: 'tCO₂e / million EUR revenue'
         }
       }
     }
@@ -74,11 +47,8 @@ const config = {
 };
 
 new Chart(
-  document.getElementById('scope12Chart'),
-  config
+  document.getElementById('scope3Chart'),
+  scope3Config
 );
 
 </script>
-
-</body>
-</html>
